@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.ocena {
+  border-color: #282c34;
+  border-width: 1px;
+  border-style: solid;
+  margin: 15px;
+  padding: 15px;
+  background-color: #61dafb;
+}
