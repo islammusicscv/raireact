@@ -52,13 +52,13 @@ function App() {
     <div>      
       <h1>Pozdravljeni študent.</h1>
       {
-        /*studenti.map((student) => {
+        studenti.map((student) => {
           //console.log(student);
           const{ime,priimek,letnica,id,predmet} = student;
           return (
             <Ocene key={id} ime={ime} priimek={priimek} predmet={predmet} letnica={letnica} />
           );
-        })*/
+        })
       }
       <hr />
       <h1>Podatki iz drugega strežnika</h1>
