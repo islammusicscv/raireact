@@ -4,7 +4,7 @@ import Uporabniki from "./Uporabniki";
 import axios from 'axios';
 
 
-const studenti = [
+/*const studenti = [
   {
     ime: "Jure",
     priimek: "Novak",
@@ -33,46 +33,65 @@ const studenti = [
     predmet: "PROG",
     id: "4"
   },
-];
+];*/
 
 function App() {
+
+  function spremeniOzadje(userId) {
+
+    setUsers(users.map((user) => {
+      let defaultColor = "aquamarine";
+      user.color === defaultColor && (defaultColor = "darkcyan");
+      return user.id === userId ? {...user, color: defaultColor} : user
+    }
+    )
+    )
+  }
 
   const [users, setUsers] = useState();
 
   useEffect(() => {
     axios.get('https://jsonplaceholder.typicode.com/users').then((res) => {
-      const users = res.data;
-      setUsers(users);
+      const usersRes = res.data;
+      //nastavim default barvo
+      usersRes && (
+        usersRes.map((user) => 
+          user = {...user, color: "aquamarine"}
+        )
+      )
+      setUsers(usersRes);
     });
   },[]);
 
-  console.log(users);
+  //console.log(users);
   
   return (
     <div>      
       <h1>Pozdravljeni študent.</h1>
       {
-        studenti.map((student) => {
+        /*studenti.map((student) => {
           //console.log(student);
           const{ime,priimek,letnica,id,predmet} = student;
           return (
             <Ocene key={id} ime={ime} priimek={priimek} predmet={predmet} letnica={letnica} />
           );
-        })
+        })*/
       }
       <hr />
       <h1>Podatki iz drugega strežnika</h1>
-      {
-        users && (
-          users.map((user) => {
-            //console.log(user);
-            const{name,id} = user;
-            return (
-              <Uporabniki key={id} name={name} />
-            );
-          })
-        )
-      }
+      <div className="uporabniki">  
+        {
+          users && (
+            users.map((user) => {
+              //console.log(user);
+              //const{name,id} = user;
+              return (
+                <Uporabniki key={user.id} user={user} onSpremeniOzadje={spremeniOzadje} />
+              );
+            })
+          )
+        }
+      </div>
     </div>
   );
 }

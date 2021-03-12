@@ -45,3 +45,17 @@
   padding: 15px;
   background-color: #61dafb;
 }
+
+.uporabniki {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 15px;
+}
+
+.uporabnik {
+  background-color: aquamarine;
+  margin: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 0.75em;
+}
