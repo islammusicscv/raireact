@@ -1,10 +1,15 @@
 import React, {useEffect, useState} from 'react';
-//import Ocene from "./Ocene";
+import Ocene from "./Ocene";
 import Uporabniki from "./Uporabniki";
 import axios from 'axios';
+import Header from './Header';
+import Footer from './Footer';
+import About from './About';
+import School from './School';
+import {BrowserRouter, Route} from "react-router-dom";
 
 
-/*const studenti = [
+const studenti = [
   {
     ime: "Jure",
     priimek: "Novak",
@@ -33,7 +38,7 @@ import axios from 'axios';
     predmet: "PROG",
     id: "4"
   },
-];*/
+];
 
 function App() {
 
@@ -66,33 +71,43 @@ function App() {
   //console.log(users);
   
   return (
-    <div>      
-      <h1>Pozdravljeni študent.</h1>
-      {
-        /*studenti.map((student) => {
-          //console.log(student);
-          const{ime,priimek,letnica,id,predmet} = student;
-          return (
-            <Ocene key={id} ime={ime} priimek={priimek} predmet={predmet} letnica={letnica} />
-          );
-        })*/
-      }
-      <hr />
-      <h1>Podatki iz drugega strežnika</h1>
-      <div className="uporabniki">  
-        {
-          users && (
-            users.map((user) => {
-              //console.log(user);
-              //const{name,id} = user;
+    <BrowserRouter>
+    <>
+      <Header />  
+      <Route path="/about" component={About} />
+      <Route path="/school" component={School} />  
+      <Route path="/" exact render={(props) => (
+        <>  
+          <h1>Pozdravljeni študent.</h1>
+          {
+            studenti.map((student) => {
+              //console.log(student);
+              const{ime,priimek,letnica,id,predmet} = student;
               return (
-                <Uporabniki key={user.id} user={user} onSpremeniOzadje={spremeniOzadje} />
+                <Ocene key={id} ime={ime} priimek={priimek} predmet={predmet} letnica={letnica} />
               );
             })
-          )
-        }
-      </div>
-    </div>
+          }
+          <hr />
+          <h1>Podatki iz drugega strežnika</h1>
+          <div className="uporabniki">  
+            {
+              users && (
+                users.map((user) => {
+                  //console.log(user);
+                  //const{name,id} = user;
+                  return (
+                    <Uporabniki key={user.id} user={user} onSpremeniOzadje={spremeniOzadje} />
+                  );
+                })
+              )
+            }
+          </div>
+        </>
+      ) } />            
+      <Footer />
+    </>  
+    </BrowserRouter>  
   );
 }
 

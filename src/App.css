@@ -59,3 +59,10 @@
   padding: 10px;
   font-size: 0.75em;
 }
+
+.footer {
+  margin: 20px;
+  border-radius: 10px;
+  background-color: #61dafb;
+  padding: 15px;
+}
